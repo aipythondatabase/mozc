@@ -43,6 +43,7 @@
 #include "rewriter/calculator_rewriter.h"
 #include "rewriter/collocation_rewriter.h"
 #include "rewriter/correction_rewriter.h"
+#include "rewriter/custom_phrase_rewriter.h"
 #include "rewriter/dice_rewriter.h"
 #include "rewriter/emoji_rewriter.h"
 #include "rewriter/emoticon_rewriter.h"
@@ -160,6 +161,7 @@ Rewriter::Rewriter(const engine::Modules& modules) {
   AddRewriter(make_unique_from_tuples<SymbolRewriter>(
       data_manager.GetSymbolRewriterData()));
   AddRewriter(std::make_unique<UnicodeRewriter>());
+  AddRewriter(std::make_unique<CustomPhraseRewriter>());
   AddRewriter(std::make_unique<VariantsRewriter>(pos_matcher));
   AddRewriter(std::make_unique<ZipcodeRewriter>(pos_matcher));
   AddRewriter(std::make_unique<DiceRewriter>());
